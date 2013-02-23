@@ -3,6 +3,7 @@
 import praw
 import json
 import re
+import time
 
 class Responder(object):
     def __init__(self, configFilename = 'config.json'):
@@ -20,8 +21,12 @@ class Responder(object):
                        self.password
                       )
 
-    def get_messages(self):
-        return self.__r.get_unread()
+        self.messages = []
+
+    def has_messages(self):
+        self.messages = [m for m in self.__r.get_unread()]
+        print len(self.messages)
+        return len(self.messages) > 0
 
     def respond(self, message):
         for r, messageText in self.actions.iteritems():
@@ -32,11 +37,16 @@ class Responder(object):
                 break
 
     def respond_to_messages(self):
-        for m in self.get_messages():
-            print 'dict:', m.__dict__
+        for m in self.messages:
             if not m.was_comment:
                 self.respond(m)
 
 if __name__ == '__main__':
     r = Responder()
-    r.respond_to_messages()
+    while True:
+        time.sleep(1)
+        try:
+            if r.has_messages():
+                r.respond_to_messages()
+        except Exception, e:
+            print e
