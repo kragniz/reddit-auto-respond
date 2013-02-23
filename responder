@@ -24,8 +24,19 @@ class Responder(object):
         return self.__r.get_unread()
 
     def respond(self, message):
-        m.reply('hi there\n\n--sent from a bot')
+        for r, messageText in self.actions.iteritems():
+            if r.match(message.subject):
+                print str(r), 'matches', message.subject
+                message.reply(messageText)
+                message.mark_as_read()
+                break
+
+    def respond_to_messages(self):
+        for m in self.get_messages():
+            print 'dict:', m.__dict__
+            if not m.was_comment:
+                self.respond(m)
 
 if __name__ == '__main__':
     r = Responder()
-    print r.actions
+    r.respond_to_messages()
