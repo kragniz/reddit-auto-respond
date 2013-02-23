@@ -1,0 +1,9 @@
+{
+  "username": "your username",
+  "password": "your password",
+
+  "responses": 
+  {
+     ".+": "Enter text here"
+  }
+}
