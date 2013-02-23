@@ -2,18 +2,30 @@
 
 import praw
 import json
+import re
 
 class Responder(object):
     def __init__(self, configFilename = 'config.json'):
-        self.config = json.load(open(configFilename))
-        self.username = self.config['username']
-        self.password = self.config['password']
+        config = json.load(open(configFilename))
+        self.username = config['username']
+        self.password = config['password']
+
+        self.actions = {}
+        for r, message in config['responses'].iteritems():
+            self.actions[re.compile(r)] = message
 
         self.__r = praw.Reddit('Auto responder bot by /u/kragniz')
         self.__r.login(
-                       username=self.username,
-                       password=self.password
+                       self.username,
+                       self.password
                       )
+
+    def get_messages(self):
+        return self.__r.get_unread()
+
+    def respond(self, message):
+        m.reply('hi there\n\n--sent from a bot')
 
 if __name__ == '__main__':
     r = Responder()
+    print r.actions
