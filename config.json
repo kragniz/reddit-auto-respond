@@ -4,6 +4,6 @@
 
   "responses": 
   {
-     ".+": "Enter text here"
+     ".+": "Enter your message here"
   }
 }
