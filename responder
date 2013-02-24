@@ -15,13 +15,13 @@ class Responder(object):
         for r, message in config['responses'].iteritems():
             self.actions[re.compile(r)] = message
 
-        self.__r = praw.Reddit('Auto responder bot by /u/kragniz')
-        self.__r.login(self.username, self.password)
+        self._r = praw.Reddit('Auto responder bot by /u/kragniz')
+        self._r.login(self.username, self.password)
 
         self.messages = []
 
     def has_messages(self):
-        self.messages = [m for m in self.__r.get_unread()]
+        self.messages = [m for m in self._r.get_unread()]
         return len(self.messages) > 0
 
     def respond(self, message):
