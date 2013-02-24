@@ -50,3 +50,6 @@ Some points about the config:
     2. Any subject including the word `help`
     3. Any subject beginning with `hello`
     4. Any subject with one or more characters
+
+#Licence
+This code is licenced under the terms of the WTFPLv2. See the `COPYING` file for more details.
