@@ -9,14 +9,16 @@ import praw
 import json
 import re
 import time
+from collections import OrderedDict
 
 class Responder(object):
     def __init__(self, configFilename = 'config.json'):
-        config = json.load(open(configFilename))
+        config = json.load(open(configFilename),
+                           object_pairs_hook=OrderedDict)
         self.username = config['username']
         self.password = config['password']
 
-        self.actions = {}
+        self.actions = OrderedDict()
         for r, message in config['responses'].iteritems():
             self.actions[re.compile(r)] = message
 
