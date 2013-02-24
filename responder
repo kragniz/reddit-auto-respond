@@ -16,10 +16,7 @@ class Responder(object):
             self.actions[re.compile(r)] = message
 
         self.__r = praw.Reddit('Auto responder bot by /u/kragniz')
-        self.__r.login(
-                       self.username,
-                       self.password
-                      )
+        self.__r.login(self.username, self.password)
 
         self.messages = []
 
