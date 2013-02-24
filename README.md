@@ -36,7 +36,7 @@ The order of the rules matter. Rules earlier in the config file take precedence 
   {
      ".*report.*": "Please send this message via mod mail instead",
      ".*help.*": "Help yourself to some:\n\n* Cheese\n\n* Cake\n\n* Some bees",
-     "^hello.*": "Help yourself to some:\n\n* Cheese\n\n* Cake\n\n* Some bees",
+     "^hello.*": "Well hello there",
      ".+": "It might take me a while to get back to you, sorry\n\nSent by a bot"
   }
 }
