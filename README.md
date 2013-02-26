@@ -35,7 +35,7 @@ over later rules in the case of multiple rules matching the same subject text.
 
 #Example config
 
-```javascript
+```json
 {
   "username": "POTATO_IN_YOUR_RESPONSE",
   "password": "correcthorsebatterystaple",
